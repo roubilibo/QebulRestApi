@@ -11,6 +11,7 @@ import {
 } from "typeorm";
 import { Category } from "./Category";
 import { Customer } from "./Customer";
+import { Transaction } from "./Transaction";
 @Entity({ name: "products" })
 export class Product {
 	@PrimaryGeneratedColumn()
@@ -30,6 +31,10 @@ export class Product {
 		inverseJoinColumn: { name: "customer_id", referencedColumnName: "id" },
 	})
 	customers: Customer[];
+
+	@OneToMany(() => Transaction, (transaction) => transaction.product)
+	transactions: Transaction[];
+
 	@Column()
 	product_name: string;
 
