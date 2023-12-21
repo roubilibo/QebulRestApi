@@ -13,4 +13,8 @@ export const loginAdminSchema = Joi.object({
 
 export const addBrandSchema = Joi.object({
 	brand_name: Joi.string().required(),
-})
+});
+
+export const CategorySchema = Joi.object({
+	category_name: Joi.string().required(),
+});

@@ -4,6 +4,7 @@ import * as cors from "cors";
 import Env from "./utils/env/Env";
 import AdminRouter from "./routes/admin/AdminRoutes";
 import AdmBrandRouter from "./routes/admin/BrandRoutes";
+import AdmCategoryRouter from "./routes/admin/CategoryRoutes";
 
 AppDataSource.initialize()
 	.then(async () => {
@@ -23,6 +24,7 @@ AppDataSource.initialize()
 		//? Routes
 		app.use("/api/v1", AdminRouter);
 		app.use("/api/v1", AdmBrandRouter);
+		app.use("/api/v1", AdmCategoryRouter);
 
 		app.listen(port, () => {
 			console.log(`server is running on port ${port}`);

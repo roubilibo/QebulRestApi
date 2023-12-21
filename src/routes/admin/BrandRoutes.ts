@@ -8,11 +8,7 @@ AdmBrandRouter.post(
 	Auth.authenticate,
 	BrandControllers.addBrand
 );
-AdmBrandRouter.get(
-	"/admin/brands",
-	Auth.authenticate,
-	BrandControllers.findallBrand
-);
+AdmBrandRouter.get("/admin/brands", BrandControllers.findallBrand);
 AdmBrandRouter.patch(
 	"/admin/edit-brand/:brand_id",
 	Auth.authenticate,
@@ -23,10 +19,6 @@ AdmBrandRouter.delete(
 	Auth.authenticate,
 	BrandControllers.deleteBrand
 );
-AdmBrandRouter.get(
-	"/admin/brand/:brand_id",
-	Auth.authenticate,
-	BrandControllers.findOneBrand
-);
+AdmBrandRouter.get("/admin/brand/:brand_id", BrandControllers.findOneBrand);
 
 export default AdmBrandRouter;
