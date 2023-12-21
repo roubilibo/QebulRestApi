@@ -4,6 +4,7 @@ import {
 	Column,
 	OneToMany,
 	ManyToMany,
+	CreateDateColumn,
 } from "typeorm";
 import { Product } from "./Product";
 import { Transaction } from "./Transaction";
@@ -30,6 +31,6 @@ export class Customer {
 	@OneToMany(() => Transaction, (transaction) => transaction.customer)
 	transactions: Transaction[];
 
-	@Column()
+	@CreateDateColumn({type:"timestamp with time zone"})
 	created_at: Date;
 }

@@ -17,6 +17,6 @@ export class Category {
 	@OneToMany(() => Product, (product) => product.category)
 	products: Product[];
 
-	@CreateDateColumn({ type: "timestamp" })
+	@CreateDateColumn({ type: "timestamp with time zone" })
 	created_at: Date;
 }

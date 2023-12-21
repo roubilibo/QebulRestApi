@@ -57,7 +57,7 @@ export class Product {
 
 	@Column()
 	product_quantity: number;
-	
-	@CreateDateColumn({ type: "timestamp" })
+
+	@CreateDateColumn({ type: "timestamp with time zone" })
 	created_at: Date;
 }

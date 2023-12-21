@@ -12,11 +12,11 @@ export class Brand {
 	id: number;
 
 	@Column()
-	category_name: string;
+	brand_name: string;
 
 	@OneToMany(() => Product, (product) => product.brand)
 	products: Product[];
 
-	@CreateDateColumn({ type: "timestamp" })
+	@CreateDateColumn({ type: "timestamp with time zone" })
 	created_at: Date;
 }

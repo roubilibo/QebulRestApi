@@ -14,6 +14,9 @@ export class Transaction {
 	@PrimaryGeneratedColumn()
 	id: number;
 
+	@Column()
+	order_id: string;
+
 	@ManyToOne(() => Customer, (customer) => customer.transactions, {
 		onDelete: "CASCADE",
 		onUpdate: "CASCADE",
@@ -35,8 +38,8 @@ export class Transaction {
 	total_price: number;
 
 	@Column()
-	status: string;
+	transaction_status: string;
 
-	@CreateDateColumn({ type: "timestamp" })
+	@CreateDateColumn({ type: "timestamp with time zone" })
 	created_at: Date;
 }

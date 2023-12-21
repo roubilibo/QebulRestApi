@@ -1,13 +1,13 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class MyMigration1703105690238 implements MigrationInterface {
-    name = 'MyMigration1703105690238'
+export class MyMigration1703138812554 implements MigrationInterface {
+    name = 'MyMigration1703138812554'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE "admin" ("id" SERIAL NOT NULL, "username" character varying NOT NULL, "email" character varying NOT NULL, "password" character varying NOT NULL, "created_at" TIMESTAMP NOT NULL, CONSTRAINT "PK_e032310bcef831fb83101899b10" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "categories" ("id" SERIAL NOT NULL, "category_name" character varying NOT NULL, "created_at" TIMESTAMP NOT NULL DEFAULT now(), CONSTRAINT "PK_24dbc6126a28ff948da33e97d3b" PRIMARY KEY ("id"))`);
         await queryRunner.query(
-					`CREATE TABLE "transactions" ("id" SERIAL NOT NULL, "customer_id" integer, "product_id" integer, CONSTRAINT "PK_a219afd8dd77ed80f5a862f1db9" PRIMARY KEY ("id"), "quantity" integer NOT NULL, "total_price" integer NOT NULL, "status" character varying NOT NULL, "created_at" TIMESTAMP NOT NULL DEFAULT now())`
+					`CREATE TABLE "transactions" ("id" SERIAL NOT NULL, "order_id" character varying NOT NULL, "customer_id" integer, "product_id" integer, CONSTRAINT "PK_a219afd8dd77ed80f5a862f1db9" PRIMARY KEY ("id"), "quantity" integer NOT NULL, "total_price" integer NOT NULL, "transaction_status" character varying NOT NULL, "created_at" TIMESTAMP NOT NULL DEFAULT now())`
 				);
         await queryRunner.query(`CREATE TABLE "brands" ("id" SERIAL NOT NULL, "category_name" character varying NOT NULL, "created_at" TIMESTAMP NOT NULL DEFAULT now(), CONSTRAINT "PK_b0c437120b624da1034a81fc561" PRIMARY KEY ("id"))`);
         await queryRunner.query(
