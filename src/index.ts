@@ -5,6 +5,7 @@ import Env from "./utils/env/Env";
 import AdminRouter from "./routes/admin/AdminRoutes";
 import AdmBrandRouter from "./routes/admin/BrandRoutes";
 import AdmCategoryRouter from "./routes/admin/CategoryRoutes";
+import AdmProductRouter from "./routes/admin/ProductRoutes";
 
 AppDataSource.initialize()
 	.then(async () => {
@@ -25,6 +26,7 @@ AppDataSource.initialize()
 		app.use("/api/v1", AdminRouter);
 		app.use("/api/v1", AdmBrandRouter);
 		app.use("/api/v1", AdmCategoryRouter);
+		app.use("/api/v1", AdmProductRouter);
 
 		app.listen(port, () => {
 			console.log(`server is running on port ${port}`);

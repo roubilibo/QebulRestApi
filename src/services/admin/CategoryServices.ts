@@ -1,4 +1,4 @@
-import { Not, Repository } from "typeorm";
+import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import { Category } from "../../entity/Category";
 import { Request, Response } from "express";

@@ -18,3 +18,10 @@ export const addBrandSchema = Joi.object({
 export const CategorySchema = Joi.object({
 	category_name: Joi.string().required(),
 });
+
+export const addProductSchema = Joi.object({
+	product_name: Joi.string().required(),
+	product_description: Joi.string().required(),
+	product_price: Joi.number().required(),
+	product_quantity: Joi.number().required(),
+});
