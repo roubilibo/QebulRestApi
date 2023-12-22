@@ -8,6 +8,7 @@ import {
 } from "typeorm";
 import { Product } from "./Product";
 import { Transaction } from "./Transaction";
+import { Address } from "./Address";
 @Entity({ name: "customers" })
 export class Customer {
 	@PrimaryGeneratedColumn()
@@ -31,6 +32,9 @@ export class Customer {
 	@OneToMany(() => Transaction, (transaction) => transaction.customer)
 	transactions: Transaction[];
 
-	@CreateDateColumn({type:"timestamp with time zone"})
+	@OneToMany(() => Address, (address) => address.customer)
+	addresses: Address[];
+
+	@CreateDateColumn({ type: "timestamp with time zone" })
 	created_at: Date;
 }

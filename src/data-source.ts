@@ -7,6 +7,7 @@ import { Product } from "./entity/Product";
 import { Transaction } from "./entity/Transaction";
 import { Brand } from "./entity/Brand";
 import { Category } from "./entity/Category";
+import { Address } from "./entity/Address";
 
 export const AppDataSource = new DataSource({
 	type: "postgres",
@@ -17,7 +18,7 @@ export const AppDataSource = new DataSource({
 	database: Env.DB_NAME,
 	synchronize: true,
 	logging: false,
-	entities: [Admin, Customer, Product, Transaction, Brand, Category],
+	entities: [Admin, Customer, Product, Transaction, Brand, Category, Address],
 	migrations: ["src/migration/*.ts"],
 	subscribers: [],
 	ssl: true,
