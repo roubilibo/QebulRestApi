@@ -223,8 +223,8 @@ class ProductServices {
 			}
 
 			// Update the product properties
-			existingProduct.brand = existingBrand;
-			existingProduct.category = existingCategory;
+			existingProduct.brand = brand_id;
+			existingProduct.category = category_id;
 			existingProduct.product_name = value.product_name;
 			existingProduct.product_image = product_image;
 			existingProduct.product_description = value.product_description;
