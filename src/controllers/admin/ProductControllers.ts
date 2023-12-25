@@ -11,6 +11,9 @@ class productControllers {
 	findOneProduct(req: Request, res: Response): Promise<Response> {
 		return ProductServices.findOneProduct(req, res);
 	}
+	editProduct(req: Request, res: Response): Promise<Response> {
+		return ProductServices.editProduct(req, res);
+	}
 }
 
 export default new productControllers();

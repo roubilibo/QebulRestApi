@@ -15,5 +15,11 @@ AdmProductRouter.get(
 	"/admin/product/:product_id",
 	ProductControllers.findOneProduct
 );
+AdmProductRouter.patch(
+	"/admin/edit-product/:product_id",
+	Auth.authenticate,
+	uploadImage.single("product_image"),
+	ProductControllers.editProduct
+);
 
 export default AdmProductRouter;

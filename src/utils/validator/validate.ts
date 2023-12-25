@@ -25,3 +25,11 @@ export const addProductSchema = Joi.object({
 	product_price: Joi.number().required(),
 	product_quantity: Joi.number().required(),
 });
+
+export const editProductSchema = Joi.object({
+	product_name: Joi.string(),
+	product_description: Joi.string(),
+	product_price: Joi.number(),
+	product_quantity: Joi.number(),
+	// Add more fields as needed, making them optional
+});
