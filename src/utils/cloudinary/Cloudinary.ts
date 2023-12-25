@@ -19,6 +19,7 @@ export const uploadToCloudinary = (
 			if (error) {
 				return reject(error);
 			}
+			// console.log("Upload result:", result);
 			return resolve(result.secure_url);
 		});
 	});

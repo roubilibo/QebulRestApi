@@ -248,6 +248,46 @@ class ProductServices {
 			});
 		}
 	}
+	async deleteProduct(req: Request, res: Response): Promise<Response> {
+		try {
+			const { product_id } = req.params;
+
+			// Find the product in the database
+			const product = await this.productRepository.findOne({
+				where: { id: parseInt(product_id) },
+			});
+
+			// Check if the product exists
+			if (!product) {
+				return res.status(404).json({
+					code: 404,
+					message: "Product not found",
+				});
+			}
+
+			// Delete the product image from Cloudinary if it exists
+			if (product.product_image) {
+				const publicId = extractPublicIdFromImageUrl(product.product_image);
+				await deleteFromCloudinary(publicId);
+				console.log("Deleting image with public ID:", publicId);
+			}
+
+			// Delete the product from the database
+			await this.productRepository.remove(product);
+
+			return res.status(200).json({
+				code: 200,
+				status: "success",
+				message: "Product deleted successfully",
+			});
+		} catch (error) {
+			return res.status(500).json({
+				code: 500,
+				message: "Internal server error",
+				data: error,
+			});
+		}
+	}
 }
 
 export default new ProductServices();

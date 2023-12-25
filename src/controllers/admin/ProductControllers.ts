@@ -14,6 +14,9 @@ class productControllers {
 	editProduct(req: Request, res: Response): Promise<Response> {
 		return ProductServices.editProduct(req, res);
 	}
+	deleteProduct(req: Request, res: Response): Promise<Response> {
+		return ProductServices.deleteProduct(req, res);
+	}
 }
 
 export default new productControllers();

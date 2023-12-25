@@ -21,5 +21,10 @@ AdmProductRouter.patch(
 	uploadImage.single("product_image"),
 	ProductControllers.editProduct
 );
+AdmProductRouter.delete(
+	"/admin/delete-product/:product_id",
+	Auth.authenticate,
+	ProductControllers.deleteProduct
+);
 
 export default AdmProductRouter;
