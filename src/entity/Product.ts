@@ -13,6 +13,7 @@ import { Category } from "./Category";
 import { Customer } from "./Customer";
 import { Transaction } from "./Transaction";
 import { Brand } from "./Brand";
+import { Cart } from "./Cart";
 @Entity({ name: "products" })
 export class Product {
 	@PrimaryGeneratedColumn()
@@ -32,13 +33,8 @@ export class Product {
 	@JoinColumn({ name: "brand_id" })
 	brand: Brand;
 
-	@ManyToMany(() => Customer, (customer) => customer.products)
-	@JoinTable({
-		name: "carts",
-		joinColumn: { name: "product_id", referencedColumnName: "id" },
-		inverseJoinColumn: { name: "customer_id", referencedColumnName: "id" },
-	})
-	customers: Customer[];
+	@OneToMany(() => Cart, (cart) => cart.product) // New relationship
+	carts: Cart[];
 
 	@OneToMany(() => Transaction, (transaction) => transaction.product)
 	transactions: Transaction[];

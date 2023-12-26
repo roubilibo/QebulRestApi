@@ -9,6 +9,7 @@ import {
 import { Product } from "./Product";
 import { Transaction } from "./Transaction";
 import { Address } from "./Address";
+import { Cart } from "./Cart";
 @Entity({ name: "customers" })
 export class Customer {
 	@PrimaryGeneratedColumn()
@@ -26,14 +27,14 @@ export class Customer {
 	@Column()
 	profile_picture: string;
 
-	@ManyToMany(() => Product, (product) => product.customers)
-	products: Product[];
-
 	@OneToMany(() => Transaction, (transaction) => transaction.customer)
 	transactions: Transaction[];
 
 	@OneToMany(() => Address, (address) => address.customer)
 	addresses: Address[];
+
+	@OneToMany(() => Cart, (cart) => cart.customer) // New relationship
+	carts: Cart[];
 
 	@CreateDateColumn({ type: "timestamp with time zone" })
 	created_at: Date;

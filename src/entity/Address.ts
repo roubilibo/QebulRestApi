@@ -15,7 +15,7 @@ export class Address {
 	id: number;
 
 	@ManyToOne(() => Customer, (customer) => customer.addresses)
-	@JoinColumn({ name: "user_id" })
+	@JoinColumn({ name: "customer_id" })
 	customer: Customer;
 
 	@Column()
