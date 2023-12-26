@@ -6,7 +6,6 @@ import {
 	ManyToMany,
 	CreateDateColumn,
 } from "typeorm";
-import { Product } from "./Product";
 import { Transaction } from "./Transaction";
 import { Address } from "./Address";
 import { Cart } from "./Cart";
@@ -24,7 +23,7 @@ export class Customer {
 	@Column()
 	password: string;
 
-	@Column()
+	@Column({ nullable: true })
 	profile_picture: string;
 
 	@OneToMany(() => Transaction, (transaction) => transaction.customer)

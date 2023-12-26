@@ -6,11 +6,8 @@ import {
 	CreateDateColumn,
 	OneToMany,
 	JoinColumn,
-	JoinTable,
-	ManyToMany,
 } from "typeorm";
 import { Category } from "./Category";
-import { Customer } from "./Customer";
 import { Transaction } from "./Transaction";
 import { Brand } from "./Brand";
 import { Cart } from "./Cart";

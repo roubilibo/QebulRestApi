@@ -33,3 +33,9 @@ export const editProductSchema = Joi.object({
 	product_quantity: Joi.number(),
 	// Add more fields as needed, making them optional
 });
+
+export const registerCustomerSchema = Joi.object({
+	username: Joi.string().required(),
+	email: Joi.string().email().required(),
+	password: Joi.string().required(),
+})
