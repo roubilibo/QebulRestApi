@@ -5,7 +5,10 @@ import * as bcrypt from "bcrypt";
 import * as jwt from "jsonwebtoken";
 import Env from "../../utils/env/Env";
 import { Customer } from "../../entity/Customer";
-import { registerCustomerSchema } from "../../utils/validator/validate";
+import {
+	loginCustomerSchema,
+	registerCustomerSchema,
+} from "../../utils/validator/validate";
 
 class AuthServices {
 	private readonly customerRepository: Repository<Customer> =
@@ -48,6 +51,55 @@ class AuthServices {
 				code: 200,
 				message: "Customer registered successfully",
 				data: savedCustomer,
+			});
+		} catch (error) {
+			return res.status(400).json({
+				code: 400,
+				message: "there is error",
+				data: error,
+			});
+		}
+	}
+	async loginCustomer(req: Request, res: Response): Promise<Response> {
+		try {
+			const { username, password } = req.body;
+			const { error, value } = loginCustomerSchema.validate({
+				username,
+				password,
+			});
+			if (error) {
+				return res.status(400).json({ error: error.details[0].message });
+			}
+			//? Check Email
+			const customerSelected = await this.customerRepository.findOne({
+				where: { username: value.username },
+			});
+			if (!customerSelected) {
+				return res.status(404).json({
+					code: 404,
+					message: "Invalid username or username not found",
+				});
+			}
+			//? Check Password
+			const isPasswordMatch = await bcrypt.compare(
+				value.password,
+				customerSelected.password
+			);
+			if (!isPasswordMatch) {
+				return res.status(400).json({
+					code: 400,
+					message: "Invalid password",
+				});
+			}
+
+			const token = jwt.sign({ id: customerSelected.id }, Env.JWT_SECRET, {
+				expiresIn: "1d",
+			});
+			return res.status(200).json({
+				code: 200,
+				message: "Customer logged in successfully",
+				data: customerSelected,
+				token: token,
 			});
 		} catch (error) {
 			return res.status(400).json({
