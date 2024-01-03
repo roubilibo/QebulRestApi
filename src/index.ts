@@ -7,6 +7,7 @@ import AdmBrandRouter from "./routes/admin/BrandRoutes";
 import AdmCategoryRouter from "./routes/admin/CategoryRoutes";
 import AdmProductRouter from "./routes/admin/ProductRoutes";
 import AuthRouter from "./routes/customer/AuthRoutes";
+import CartRouter from "./routes/customer/CartRoutes";
 
 AppDataSource.initialize()
 	.then(async () => {
@@ -29,6 +30,7 @@ AppDataSource.initialize()
 		app.use("/api/v1", AdmCategoryRouter);
 		app.use("/api/v1", AdmProductRouter);
 		app.use("/api/v1", AuthRouter);
+		app.use("/api/v1", CartRouter);
 
 		app.listen(port, () => {
 			console.log(`server is running on port ${port}`);

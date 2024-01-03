@@ -44,3 +44,8 @@ export const loginCustomerSchema = Joi.object({
 	username: Joi.string().required(),
 	password: Joi.string().required(),
 });
+
+export const addToCartSchema = Joi.object({
+	product_id: Joi.number().required(),
+	quantity: Joi.number().required(),
+});
