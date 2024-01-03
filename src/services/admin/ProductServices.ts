@@ -72,8 +72,8 @@ class ProductServices {
 			}
 
 			const product = this.productRepository.create({
-				brand: existingBrand,
-				category: existingCategory,
+				brand: brand_id,
+				category: category_id,
 				product_name: value.product_name,
 				product_image: product_image,
 				product_description: value.product_description,
